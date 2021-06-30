@@ -26,8 +26,8 @@ jobs:
           args: >
             -Dsonar.organization=${{ env.SONAR_ORG }}
             -Dsonar.projectName=data-annotator-for-machine-learning-poc
-            -Dsonar.projectKey=kai-qiao-DAML-master
-            -Dsonar.sources=annotation-service
+            -Dsonar.projectKey=data-annotator-for-machine-learning-poc
+            -Dsonar.sources=active-learning-service
             -Dsonar.test.exclusions=**/node_modules/**/*,**/models/**/*,**/downloadProject/**/*,**/logs/**/*,**/venv/**/*,**/__pycache__/**/*,*.md,*.txt,*.yml
 
           
