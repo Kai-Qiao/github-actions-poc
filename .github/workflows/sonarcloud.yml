@@ -12,19 +12,23 @@ jobs:
 
       - name: pull-code-for-github
         run: |
-          git clone -b F-DecoupleAws https://github.com/vmware/data-annotator-for-machine-learning.git  
+          git clone -b F-DecoupleAws https://github.com/vmware/data-annotator-for-machine-learning.git
+          git clone --branch=devops https://github.com/Kai-Qiao/data-annotator-for-machine-learning.git devops
+          
+      - name: config-sonar-project
+        working-directory: ./devops/sonar
+        run: | 
+          python ./config_sonar_project.py -ProjectName github-actions-poc -ProjectKey github-actions-poc -OrgKey kai-qiao -QualityGateName angular-client-gate -QualityGateConditions ./quality_gates/angular-client.json -SonarToken ${{ secrets.SONAR_TOKEN }}
 
       - name: build-sonar-cloud
         uses: sonarsource/sonarcloud-github-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          SONAR_ORG: kai-qiao
-          BRANCH: master
         with:
           projectBaseDir: ./data-annotator-for-machine-learning
           args: >
-            -Dsonar.organization=${{ env.SONAR_ORG }}
+            -Dsonar.organization=kai-qiao
             -Dsonar.projectName=github-actions-poc
             -Dsonar.projectKey=github-actions-poc
             -Dsonar.sources=active-learning-service
