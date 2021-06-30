@@ -33,5 +33,10 @@ jobs:
             -Dsonar.projectKey=github-actions-poc
             -Dsonar.sources=active-learning-service
             -Dsonar.test.exclusions=**/node_modules/**/*,**/models/**/*,**/downloadProject/**/*,**/logs/**/*,**/venv/**/*,**/__pycache__/**/*,*.md,*.txt,*.yml
+            -Dsonar.verbose=false
+            -Dsonar.c.file.suffixes=- 
+            -Dsonar.cpp.file.suffixes=- 
+            -Dsonar.objc.file.suffixes=-
+            -Dsonar.typescript.lcov.reportPaths=-
 
           
